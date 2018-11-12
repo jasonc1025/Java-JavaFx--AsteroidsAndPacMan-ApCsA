@@ -57,11 +57,11 @@ public class AsteroidsAndPacMan_ClApp extends Application
         //        SpriteCore_ClAb backgroundEarth_Ob = new Sprite_CollidableNot_MovableNot_Cl();
         Sprite_CollidableNot_MovableNot_Cl backgroundEarth_Ob = new Sprite_CollidableNot_MovableNot_Cl();
 
-        //y- Sprite_Collidable_Movable_Cl playerMe_Ob = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/briefcase.png");
-        Sprite_Collidable_Movable_Cl playerMe_Ob = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/CalvinHobbes-Saucer.png");
+        //y- Sprite_CollidableYes_MovableYes_Cl playerMe_Ob = new Sprite_CollidableYes_MovableYes_Cl("/AsteroidsAndPacMan_Package/briefcase.png");
+        Sprite_CollidableYes_MovableYes_Cl playerMe_Ob = new Sprite_CollidableYes_MovableYes_Cl("/AsteroidsAndPacMan_Package/CalvinHobbes-Saucer.png");
 
         //n- ArrayList<SpriteCore_ClAb> projectile_ArrLst = new ArrayList<SpriteCore_ClAb>();
-        ArrayList<Sprite_Collidable_Movable_Cl> projectile_ArrLst = new ArrayList<>();
+        ArrayList<Sprite_CollidableYes_MovableYes_Cl> projectile_ArrLst = new ArrayList<>();
 
         // * Use SuperClass 'SpriteCore_ClAb' as polymorphic-type so each arraylist slot can be randomly-assigned any subclass
         // ** through following for-loop
@@ -106,14 +106,14 @@ public class AsteroidsAndPacMan_ClApp extends Application
 
                 playerMe_Ob.updateMove( elapsedTimeBetweenCycles_InSec );
 
-                for (Sprite_Collidable_Movable_Cl projectileOb : projectile_ArrLst ) {
+                for (Sprite_CollidableYes_MovableYes_Cl projectileOb : projectile_ArrLst ) {
                     projectileOb.updateMove(elapsedTimeBetweenCycles_InSec);
                 }
                 for (SpriteCore_ClAb targetBotOb : targetBot_ArrLst ) {
-//                for (Sprite_Collidable_Movable_Cl targetBotOb : targetBot_ArrLst ) {
+//                for (Sprite_CollidableYes_MovableYes_Cl targetBotOb : targetBot_ArrLst ) {
                     if( targetBotOb.getVelocityMovable() ) {
                         // * IMPORTANT: Since arrayList is of type 'SpriteCore_ClAb', need following type-casting to access following methods
-                        Sprite_Collidable_Movable_Cl targetBotObTmp = (Sprite_Collidable_Movable_Cl) targetBotOb;
+                        Sprite_CollidableYes_MovableYes_Cl targetBotObTmp = (Sprite_CollidableYes_MovableYes_Cl) targetBotOb;
 //                        targetBotOb.updateMove(elapsedTimeBetweenCycles_InSec);
                         targetBotObTmp.updateMove(elapsedTimeBetweenCycles_InSec);
                     }
@@ -150,10 +150,10 @@ public class AsteroidsAndPacMan_ClApp extends Application
                     SpriteCore_ClAb targetBotOb = targetBotIterator.next();
 
                     //n- Iterator<SpriteCore_ClAb> projectileIterator = projectile_ArrLst.iterator();
-                    Iterator<Sprite_Collidable_Movable_Cl> projectileIterator = projectile_ArrLst.iterator();
+                    Iterator<Sprite_CollidableYes_MovableYes_Cl> projectileIterator = projectile_ArrLst.iterator();
                     while ( projectileIterator.hasNext() )
                     {
-                        Sprite_Collidable_Movable_Cl projectile_Ob = projectileIterator.next();
+                        Sprite_CollidableYes_MovableYes_Cl projectile_Ob = projectileIterator.next();
                         if (projectile_Ob.colliding(targetBotOb))
                         {
                             targetBotIterator.remove();
@@ -214,7 +214,7 @@ public class AsteroidsAndPacMan_ClApp extends Application
             double py = (SCREEN_LENGTH_Y -100) * rand.nextDouble() + 50;
 
             if( rand.nextBoolean() ){
-                System.out.println(" * True: Sprite_Collidable_Movable_Cl");
+                System.out.println(" * True: Sprite_CollidableYes_MovableYes_Cl");
                 // * Use SuperClass 'SpriteCore_ClAb' as polymorphic-type so object can flexibly handle any of the subclasses
                 // targetBotOb.setPosition(px,py);
                 // SpriteCore_ClAb targetBotOb = new SpriteCore_ClAb("ufo.png", px, py);
@@ -224,18 +224,18 @@ public class AsteroidsAndPacMan_ClApp extends Application
                 double vx = 50 - ( rand.nextInt(100) + 1 ); // * Base-1: {-50 to +50}
                 double vy = 50 - ( rand.nextInt(100) + 1 ); // * Base-1: {-50 to +50}
 
-                SpriteCore_ClAb targetBotOb = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/ufo.png", px, py, vx, vy);
+                SpriteCore_ClAb targetBotOb = new Sprite_CollidableYes_MovableYes_Cl("/AsteroidsAndPacMan_Package/ufo.png", px, py, vx, vy);
                 targetBot_ArrLst.add( targetBotOb );
             }
             else{
-                System.out.println(" * False: Sprite_Collidable_MovableNot_Cl");
-                SpriteCore_ClAb targetBotOb = new Sprite_Collidable_MovableNot_Cl("/AsteroidsAndPacMan_Package/ufo.png", px, py);
+                System.out.println(" * False: Sprite_CollidableYes_MovableNot_Cl");
+                SpriteCore_ClAb targetBotOb = new Sprite_CollidableYes_MovableNot_Cl("/AsteroidsAndPacMan_Package/ufo.png", px, py);
                 targetBot_ArrLst.add( targetBotOb );
             }
         }
     }
 
-    private void playerMe_Input_Projectile_Mth(long currentCycle_NanoTime, ArrayList<String> playerMe_Input_ArrLst, LongValue lastProjectile_NanoTime, Sprite_Collidable_Movable_Cl playerMe_Ob, ArrayList<Sprite_Collidable_Movable_Cl> projectile_ArrLst) {
+    private void playerMe_Input_Projectile_Mth(long currentCycle_NanoTime, ArrayList<String> playerMe_Input_ArrLst, LongValue lastProjectile_NanoTime, Sprite_CollidableYes_MovableYes_Cl playerMe_Ob, ArrayList<Sprite_CollidableYes_MovableYes_Cl> projectile_ArrLst) {
         // * IMPORTANT BUG WORKAROUND: Though UP && DOWN && SPACE unexpectedly does not work, A && S && SPACE does work :)+
         // * IMPORTANT: 1 sec = 1 x 10^9 nano-sec
         // * IMPORTANT: To avoid 'java: integer number too large' error, require 'l' for 64bit otherwise 32bit default
@@ -243,9 +243,9 @@ public class AsteroidsAndPacMan_ClApp extends Application
         if ( (playerMe_Input_ArrLst.contains("SPACE")) && ( currentCycle_NanoTime - lastProjectile_NanoTime.value > 100000000l ) ){
             // * Projectile requires non-zero[ playerMe_Ob.getVelocityXPrev || playerMe_Ob.getVelocityYPrev ]
             if( Math.abs( playerMe_Ob.getVelocityXPrev() ) >= 1 || Math.abs( playerMe_Ob.getVelocityYPrev() ) >= 1 ) {
-                //y- SpriteCore_ClAb projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/earth.png", playerMe_Ob.getPositionX(), playerMe_Ob.getPositionY());
-                //y- Sprite_Collidable_Movable_Cl projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/earth.png",
-                Sprite_Collidable_Movable_Cl projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/Circle-Green-20x20.png",
+                //y- SpriteCore_ClAb projectileObj = new Sprite_CollidableYes_MovableYes_Cl("/AsteroidsAndPacMan_Package/earth.png", playerMe_Ob.getPositionX(), playerMe_Ob.getPositionY());
+                //y- Sprite_CollidableYes_MovableYes_Cl projectileObj = new Sprite_CollidableYes_MovableYes_Cl("/AsteroidsAndPacMan_Package/earth.png",
+                Sprite_CollidableYes_MovableYes_Cl projectileObj = new Sprite_CollidableYes_MovableYes_Cl("/AsteroidsAndPacMan_Package/Circle-Green-20x20.png",
                                                                                     playerMe_Ob.getPositionX() + (playerMe_Ob.getImage().getWidth()/2), playerMe_Ob.getPositionY() + (playerMe_Ob.getImage().getHeight()/2),
                                                                                      playerMe_Ob.getVelocityXPrev() * 2,playerMe_Ob.getVelocityYPrev() * 2 );
                 projectile_ArrLst.add(projectileObj);
@@ -254,7 +254,7 @@ public class AsteroidsAndPacMan_ClApp extends Application
         }
     }
 
-    private void playerMe_Input_Move_Mth(Sprite_Collidable_Movable_Cl playerMe_Ob, ArrayList<String> playerMe_Input_ArrLst) {
+    private void playerMe_Input_Move_Mth(Sprite_CollidableYes_MovableYes_Cl playerMe_Ob, ArrayList<String> playerMe_Input_ArrLst) {
         playerMe_Ob.setVelocity(0,0);
         if (playerMe_Input_ArrLst.contains("LEFT") || playerMe_Input_ArrLst.contains("A")) {
             playerMe_Ob.addVelocity(-50, 0);

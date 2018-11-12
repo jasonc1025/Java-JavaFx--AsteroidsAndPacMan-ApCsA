@@ -1,20 +1,20 @@
 package AsteroidsAndPacMan_Package;
 
 //y- class IconBriefcase_Cl extends SpriteCore_ClAb implements Collidable_If, Movable_If {
-class Sprite_Collidable_MovableNot_Cl extends SpriteCore_ClAb implements Collidable_If {
+class Sprite_CollidableYes_MovableNot_Cl extends SpriteCore_ClAb implements Collidable_If {
 
     // * Constructors
     //
-    public Sprite_Collidable_MovableNot_Cl()
+    public Sprite_CollidableYes_MovableNot_Cl()
     {
         // [jwc] this("earth.png", 0, 0);  // Default position of (250,250)
         super("/AsteroidsAndPacMan_Package/earth.png", 0, 0, false, 0.0, 0.0);  // Default position of (250,250)
     }
-    public Sprite_Collidable_MovableNot_Cl(String imageFilenameIn)
+    public Sprite_CollidableYes_MovableNot_Cl(String imageFilenameIn)
     {
         super(imageFilenameIn, 0, 0, false, 0.0, 0.0);  // Default position of (0,0)
     }
-    public Sprite_Collidable_MovableNot_Cl(String imageFilenameIn, double positionXIn, double positionYIn)
+    public Sprite_CollidableYes_MovableNot_Cl(String imageFilenameIn, double positionXIn, double positionYIn)
     {
         super(imageFilenameIn, positionXIn, positionYIn, false, 0.0, 0.0);  // Default position of (0,0)
     }
@@ -31,7 +31,7 @@ class Sprite_Collidable_MovableNot_Cl extends SpriteCore_ClAb implements Collida
 //    }
 
     public boolean colliding(SpriteCore_ClAb s)
-//    public boolean colliding(Sprite_Collidable_MovableNot_Cl s)
+//    public boolean colliding(Sprite_CollidableYes_MovableNot_Cl s)
     {
         return s.getBoundary().intersects( this.getBoundary() );
     }

@@ -1,23 +1,23 @@
 package AsteroidsAndPacMan_Package;
 
 //y- class IconBriefcase_Cl extends SpriteCore_ClAb implements Collidable_If, Movable_If {
-class Sprite_Collidable_Movable_Cl extends SpriteCore_ClAb implements Collidable_If, Movable_If {
+class Sprite_CollidableYes_MovableYes_Cl extends SpriteCore_ClAb implements Collidable_If, Movable_If {
 
     // * Constructors
     //
-    public Sprite_Collidable_Movable_Cl()
+    public Sprite_CollidableYes_MovableYes_Cl()
     {
         // [jwc] this("earth.png", 0, 0);  // Default position of (250,250)
         // * 'velocityMovableBooIn' override default of 'false'
         super("/AsteroidsAndPacMan_Package/earth.png", 0, 0, true, 0.0, 0.0);  // Default position of (250,250)
     }
-    public Sprite_Collidable_Movable_Cl(String imageFilenameIn)
+    public Sprite_CollidableYes_MovableYes_Cl(String imageFilenameIn)
     {
         // * 'velocityMovableBooIn' defaults 'true'
         // * 'velocityMovableBooIn' override default of 'false'
         super(imageFilenameIn, 0, 0, true, 0.0, 0.0);  // Default position of (0,0)
     }
-    public Sprite_Collidable_Movable_Cl(String imageFilenameIn, double positionXIn, double positionYIn, double velocityXIn, double velocityYIn)
+    public Sprite_CollidableYes_MovableYes_Cl(String imageFilenameIn, double positionXIn, double positionYIn, double velocityXIn, double velocityYIn)
     {
         // * 'velocityMovableBooIn' override default of 'false'
         super(imageFilenameIn, positionXIn, positionYIn, true, velocityXIn, velocityYIn);  // Default position of (0,0)
