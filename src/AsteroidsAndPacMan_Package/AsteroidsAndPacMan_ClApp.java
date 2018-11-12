@@ -68,8 +68,11 @@ public class AsteroidsAndPacMan_ClApp extends Application
         ArrayList<SpriteCore_ClAb> targetBot_ArrLst = new ArrayList<>();
         targetBot_ArrLst_Setup_Mth(targetBot_ArrLst);
 
+        // * Instantiate the following objects since need access inner-class by following 'AnimationTimer'
         LongValue lastCycle_NanoTime = new LongValue( System.nanoTime() );
         LongValue lastProjectile_NanoTime = new LongValue( System.nanoTime() );
+        LongValue elapsedFpsBetweenCycles = new LongValue(0 );
+        //n- Long elapsedFpsBetweenCycles = new Long(0 );
 
         IntValue score = new IntValue(0);
 
@@ -85,8 +88,10 @@ public class AsteroidsAndPacMan_ClApp extends Application
                 //
 
                 // * Calculate timer since last GameEngine Cycle
-                double elapsedTimeBetweenCycles_InSec = (currentCycle_NanoTime - lastCycle_NanoTime.value) / 1000000000.0;
+                Double elapsedTimeBetweenCycles_InSec = (currentCycle_NanoTime - lastCycle_NanoTime.value) / 1000000000.0;
+                elapsedFpsBetweenCycles.value = Math.round(1/elapsedTimeBetweenCycles_InSec);
                 lastCycle_NanoTime.value = currentCycle_NanoTime;
+                // y- debug- System.out.println("> "+ elapsedFpsBetweenCycles.value);
 
                 //
                 // * PlayerMe Input Update
@@ -183,11 +188,12 @@ public class AsteroidsAndPacMan_ClApp extends Application
 
                 //[jwc] String pointsText = "Cash: $" + (100 * score.value);
                 String pointsText = "TargetBots: " + (1 * score.value);
-                //[jwc] gc.fillText( pointsText, 360, 36 );
-                graphicContext_Ob.fillText( pointsText, 300, 36 );
-                //[jwc] gc.strokeText( pointsText, 360, 36 );
-                graphicContext_Ob.strokeText( pointsText, 300, 36 );
+                graphicContext_Ob.fillText( pointsText,300,40 );
+                graphicContext_Ob.strokeText( pointsText,300,40 );
 
+                String pointsText_02 = "FPS: " + (1 * elapsedFpsBetweenCycles.value);
+                graphicContext_Ob.fillText( pointsText_02,300, 70 );
+                graphicContext_Ob.strokeText( pointsText_02,300, 70 );
             }
         }.start();
 
