@@ -58,7 +58,7 @@ public class AsteroidsAndPacMan_ClApp extends Application
         Sprite_CollidableNot_MovableNot_Cl backgroundEarth_Ob = new Sprite_CollidableNot_MovableNot_Cl();
 
         //y- Sprite_Collidable_Movable_Cl playerMe_Ob = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/briefcase.png");
-        Sprite_Collidable_Movable_Cl playerMe_Ob = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/CalvinHobbes-Saucer.jpg");
+        Sprite_Collidable_Movable_Cl playerMe_Ob = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/CalvinHobbes-Saucer.png");
 
         //n- ArrayList<SpriteCore_ClAb> projectile_ArrLst = new ArrayList<SpriteCore_ClAb>();
         ArrayList<Sprite_Collidable_Movable_Cl> projectile_ArrLst = new ArrayList<>();
@@ -171,20 +171,22 @@ public class AsteroidsAndPacMan_ClApp extends Application
                 for (SpriteCore_ClAb targetBotOb : targetBot_ArrLst )
                     targetBotOb.render( graphicContext_Ob );
 
+                // * Render last to be on top of other icons
+                playerMe_Ob.render( graphicContext_Ob );
+
+
+                // * Render last to be on top of other icons
                 // * Use 'for' loop sufficient since read-only and not need to write ('Iterator<>')
                 // * Use SuperClass 'SpriteCore_ClAb' as polymorphic-type so object can flexibly handle any of the subclasses
                 for (SpriteCore_ClAb projectileOb : projectile_ArrLst )
                     projectileOb.render( graphicContext_Ob );
 
-                // * Render last to be on top of other icons
-                playerMe_Ob.render( graphicContext_Ob );
-
                 //[jwc] String pointsText = "Cash: $" + (100 * score.value);
                 String pointsText = "TargetBots: " + (1 * score.value);
                 //[jwc] gc.fillText( pointsText, 360, 36 );
-                graphicContext_Ob.fillText( pointsText, 370, 36 );
+                graphicContext_Ob.fillText( pointsText, 300, 36 );
                 //[jwc] gc.strokeText( pointsText, 360, 36 );
-                graphicContext_Ob.strokeText( pointsText, 370, 36 );
+                graphicContext_Ob.strokeText( pointsText, 300, 36 );
 
             }
         }.start();
@@ -236,9 +238,10 @@ public class AsteroidsAndPacMan_ClApp extends Application
             // * Projectile requires non-zero[ playerMe_Ob.getVelocityXPrev || playerMe_Ob.getVelocityYPrev ]
             if( Math.abs( playerMe_Ob.getVelocityXPrev() ) >= 1 || Math.abs( playerMe_Ob.getVelocityYPrev() ) >= 1 ) {
                 //y- SpriteCore_ClAb projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/earth.png", playerMe_Ob.getPositionX(), playerMe_Ob.getPositionY());
-                Sprite_Collidable_Movable_Cl projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/earth.png",
-                                                                                           playerMe_Ob.getPositionX(), playerMe_Ob.getPositionY(),
-                                                                                 playerMe_Ob.getVelocityXPrev() * 2,playerMe_Ob.getVelocityYPrev() * 2 );
+                //y- Sprite_Collidable_Movable_Cl projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/earth.png",
+                Sprite_Collidable_Movable_Cl projectileObj = new Sprite_Collidable_Movable_Cl("/AsteroidsAndPacMan_Package/Circle-Green-20x20.png",
+                                                                                    playerMe_Ob.getPositionX() + (playerMe_Ob.getImage().getWidth()/2), playerMe_Ob.getPositionY() + (playerMe_Ob.getImage().getHeight()/2),
+                                                                                     playerMe_Ob.getVelocityXPrev() * 2,playerMe_Ob.getVelocityYPrev() * 2 );
                 projectile_ArrLst.add(projectileObj);
                 lastProjectile_NanoTime.value = currentCycle_NanoTime;
             }
